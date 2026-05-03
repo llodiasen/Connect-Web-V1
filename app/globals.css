@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Fonts */
+  --font-heading: var(--font-clash);
+  --font-body: var(--font-inter);
+
+  /* Brand colors */
+  --color-orange: #E85D04;
+  --color-orange-hover: #C94E03;
+  --color-navy: #1B3A5C;
+  --color-navy-light: #243659;
+  --color-bg: #0D1117;
+  --color-surface: #161B22;
+  --color-surface-alt: #1C2128;
+  --color-border: #30363D;
+  --color-text: #E6EDF3;
+  --color-text-muted: #8B949E;
+}
+
+:root {
+  --background: #0D1117;
+  --foreground: #E6EDF3;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2 {
+  font-family: var(--font-clash), Georgia, serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+h3, h4, h5, h6 {
+  font-family: var(--font-inter), Inter, system-ui, sans-serif;
+  font-weight: 600;
+}
+
+/* Section utilities */
+.section-base {
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 2rem);
+}
+
+/* CTA orange button */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #E85D04;
+  color: #FFFFFF;
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  height: 52px;
+  padding: 0 32px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: #C94E03;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(232, 93, 4, 0.35);
+}
+
+/* Ghost button */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: #E6EDF3;
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  height: 52px;
+  padding: 0 32px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-ghost:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+}
