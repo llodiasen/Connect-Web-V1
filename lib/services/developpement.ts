@@ -11,7 +11,7 @@ export const developpementData = {
     cta: 'Estimation gratuite',
   },
   intro:
-    'Vous avez une idée ou un process manuel à automatiser ? Nous concevons et livrons l'application complète — interface, backend, paiement mobile — en quelques semaines, pas en plusieurs mois.',
+    "Vous avez une idée ou un process manuel à automatiser ? Nous concevons et livrons l'application complète — interface, backend, paiement mobile — en quelques semaines, pas en plusieurs mois.",
   subServices: [
     {
       icon: 'Globe',
@@ -50,7 +50,7 @@ export const developpementData = {
       answer: 'Next.js, React, TypeScript, Supabase, PostgreSQL, Prisma, Vercel. Stack choisi pour la performance et la maintenabilité.',
     },
     {
-      question: 'Je peux modifier l'app moi-même après livraison ?',
+      question: "Je peux modifier l'app moi-même après livraison ?",
       answer: 'Oui. Formation incluse et documentation livrée. Vous gardez le contrôle total du code source.',
     },
     {

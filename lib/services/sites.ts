@@ -11,7 +11,7 @@ export const sitesData = {
     cta: 'Estimation gratuite',
   },
   intro:
-    'Vous avez besoin d'un site qui convertit — pas juste d'un site qui "fait joli". On livre des sites rapides, optimisés pour Google, que vos clients trouvent et que votre équipe peut mettre à jour seule.',
+    "Vous avez besoin d'un site qui convertit — pas juste d'un site qui \"fait joli\". On livre des sites rapides, optimisés pour Google, que vos clients trouvent et que votre équipe peut mettre à jour seule.",
   subServices: [
     {
       icon: 'Monitor',
@@ -42,7 +42,7 @@ export const sitesData = {
   ],
   faq: [
     {
-      question: 'Quel est le coût d'un site vitrine ?',
+      question: "Quel est le coût d'un site vitrine ?",
       answer: 'À partir de 350 000 FCFA pour un site vitrine professionnel. Le budget final dépend du nombre de pages et des fonctionnalités.',
     },
     {

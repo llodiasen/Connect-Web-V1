@@ -1,13 +1,23 @@
 export const metadata = {
   title: 'Nos offres — Présence, Commerce, Produit | Connect Web Dakar',
-  description: 'Découvrez les 3 offres Connect Web. Sites, e-commerce et applications sur mesure à Dakar. Devis gratuit.',
+  description: "Découvrez les 3 offres Connect Web. Sites, e-commerce et applications sur mesure à Dakar. Devis gratuit.",
 }
 
-const offers = [
+interface Offer {
+  name: string
+  delay: string
+  target: string
+  price: string
+  features: string[]
+  cta: string
+  recommended?: boolean
+}
+
+const offers: Offer[] = [
   {
     name: 'PRÉSENCE',
     delay: '1–2 semaines',
-    for: 'PME sans site ou site vieilli',
+    target: 'PME sans site ou site vieilli',
     price: 'À partir de 350 000 FCFA',
     features: [
       'Site vitrine ou landing page',
@@ -24,7 +34,7 @@ const offers = [
   {
     name: 'COMMERCE',
     delay: '2–4 semaines',
-    for: 'PME qui veut vendre en ligne',
+    target: 'PME qui veut vendre en ligne',
     price: 'À partir de 600 000 FCFA',
     features: [
       'E-commerce complet',
@@ -42,7 +52,7 @@ const offers = [
   {
     name: 'PRODUIT',
     delay: '4–8 semaines',
-    for: 'PME qui veut automatiser et scaler',
+    target: 'PME qui veut automatiser et scaler',
     price: 'À partir de 1 200 000 FCFA',
     features: [
       'Application web/mobile sur mesure',
@@ -92,7 +102,7 @@ export default function OffresPage() {
                 {offer.name}
               </div>
               <div style={{ color: '#8B949E', fontSize: '0.85rem', marginBottom: '20px' }}>
-                {offer.delay} · {offer.for}
+                {offer.delay} · {offer.target}
               </div>
               <div style={{ color: '#E6EDF3', fontWeight: 700, fontSize: '1.4rem', marginBottom: '28px' }}>
                 {offer.price}
@@ -112,7 +122,6 @@ export default function OffresPage() {
           ))}
         </div>
 
-        {/* FAQ pricing */}
         <div style={{ marginTop: '80px', maxWidth: '640px', margin: '80px auto 0' }}>
           <h2 style={{ fontFamily: 'var(--font-clash, Georgia, serif)', fontSize: 'clamp(1.5rem, 3vw, 2rem)', color: '#E6EDF3', marginBottom: '32px', textAlign: 'center' }}>
             Questions sur les tarifs
@@ -120,7 +129,7 @@ export default function OffresPage() {
           {[
             { q: 'Y a-t-il des frais cachés ?', a: 'Non. Le devis est fixe et inclut le développement, les tests, la formation et le support 30j. Zéro surprise.' },
             { q: 'Quelles sont les modalités de paiement ?', a: '40% à la commande, 60% à la livraison. Paiement en 3 fois disponible pour les projets au-dessus de 1 000 000 FCFA.' },
-            { q: 'Puis-je commencer par l'offre Présence et évoluer ?', a: 'Oui. Nos projets sont conçus pour évoluer. Vous pouvez ajouter des fonctionnalités Commerce ou Produit à tout moment.' },
+            { q: "Puis-je commencer par l'offre Présence et évoluer ?", a: "Oui. Nos projets sont conçus pour évoluer. Vous pouvez ajouter des fonctionnalités Commerce ou Produit à tout moment." },
           ].map(({ q, a }) => (
             <div key={q} style={{ background: '#161B22', border: '1px solid #30363D', borderRadius: '10px', padding: '24px', marginBottom: '12px' }}>
               <div style={{ color: '#E6EDF3', fontWeight: 600, marginBottom: '10px' }}>{q}</div>

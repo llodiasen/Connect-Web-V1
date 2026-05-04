@@ -11,12 +11,12 @@ export const nfcData = {
     cta: 'Commander mes cartes',
   },
   intro:
-    'Arrêtez d'imprimer des cartes de visite que vos contacts perdent. Une carte NFC partage votre contact, votre portfolio ou votre menu en un tap — sans application, sans friction.',
+    "Arrêtez d'imprimer des cartes de visite que vos contacts perdent. Une carte NFC partage votre contact, votre portfolio ou votre menu en un tap — sans application, sans friction.",
   subServices: [
     {
       icon: 'CreditCard',
       title: 'Carte NFC Pro',
-      description: 'Partagez votre contact, LinkedIn, portfolio d'un simple tap. Compatible tous smartphones.',
+      description: "Partagez votre contact, LinkedIn, portfolio d'un simple tap. Compatible tous smartphones.",
     },
     {
       icon: 'UtensilsCrossed',

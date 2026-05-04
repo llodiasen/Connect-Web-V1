@@ -3,7 +3,7 @@ export const automationData = {
   meta: {
     title: 'Automatisation & IA Dakar — CRM, ERP, Chatbot | Connect Web',
     description:
-      'Automatisez vos process métier avec l'IA. CRM, ERP Odoo, chatbot RAG, email marketing. À Dakar et en Afrique francophone.',
+      "Automatisez vos process métier avec l'IA. CRM, ERP Odoo, chatbot RAG, email marketing. À Dakar et en Afrique francophone.",
   },
   hero: {
     title: 'Automatisez.\nScalez sans recruter.',
@@ -43,11 +43,11 @@ export const automationData = {
   faq: [
     {
       question: 'Mon équipe doit-elle être technique pour utiliser les outils ?',
-      answer: 'Non. On choisit des outils adaptés à vos équipes et on forme tout le monde. L'objectif est que vous soyez autonomes.',
+      answer: "Non. On choisit des outils adaptés à vos équipes et on forme tout le monde. L'objectif est que vous soyez autonomes.",
     },
     {
       question: 'Vous pouvez connecter notre outil existant ?',
-      answer: 'Oui dans la grande majorité des cas. On intègre HubSpot, Odoo, Notion, Slack, WhatsApp, Wave et des centaines d'autres via API.',
+      answer: "Oui dans la grande majorité des cas. On intègre HubSpot, Odoo, Notion, Slack, WhatsApp, Wave et des centaines d'autres via API.",
     },
     {
       question: 'Le chatbot IA peut répondre en wolof ?',
