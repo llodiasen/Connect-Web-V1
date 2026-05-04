@@ -2,7 +2,7 @@
 
 @theme inline {
   /* Fonts */
-  --font-heading: var(--font-clash);
+  --font-heading: 'Clash Display', Georgia, serif;
   --font-body: var(--font-inter);
 
   /* Brand colors */
@@ -21,6 +21,7 @@
 :root {
   --background: #0D1117;
   --foreground: #E6EDF3;
+  --font-clash: 'Clash Display', Georgia, serif;
 }
 
 * {
@@ -40,7 +41,7 @@ body {
 }
 
 h1, h2 {
-  font-family: var(--font-clash), Georgia, serif;
+  font-family: 'Clash Display', Georgia, serif;
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.1;
