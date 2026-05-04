@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 
 const inter = Inter({
   variable: '--font-inter',
@@ -39,7 +41,11 @@ export default function RootLayout({
           href="https://api.fontshare.com/v2/css?f[]=clash-display@700,600,400&display=swap"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   )
 }
