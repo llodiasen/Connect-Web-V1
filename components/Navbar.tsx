@@ -1,20 +1,25 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 
 const navLinks = [
-  { label: 'Développement', href: '/services/developpement' },
-  { label: 'Sites', href: '/services/sites' },
-  { label: 'Automation', href: '/services/automation' },
-  { label: 'NFC', href: '/services/nfc' },
+  { label: 'Services', href: '/services/developpement' },
+  { label: 'Process', href: '/#process' },
+  { label: 'Packages', href: '/offres' },
   { label: 'Réalisations', href: '/portfolio' },
-  { label: 'Offres', href: '/offres' },
 ]
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <>
@@ -23,54 +28,51 @@ export default function Navbar() {
           position: 'sticky',
           top: 0,
           zIndex: 50,
-          background: '#FFFFFF',
-          borderBottom: '1px solid #E5E7EB',
+          background: 'var(--surface)',
+          borderBottom: `1px solid ${scrolled ? 'var(--line)' : 'transparent'}`,
+          transition: 'border-color 200ms ease-out',
         }}
       >
         <div
           className="container"
           style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px' }}
         >
+          {/* Logo */}
           <Link
             href="/"
             style={{
-              fontFamily: 'var(--font-inter), sans-serif',
-              fontSize: '16px',
-              fontWeight: 700,
-              color: '#1B3A5C',
+              fontFamily: 'var(--font-cormorant), Georgia, serif',
+              fontSize: '18px',
+              fontWeight: 400,
+              letterSpacing: '0.04em',
+              color: 'var(--ink)',
               textDecoration: 'none',
-              letterSpacing: '0.06em',
             }}
           >
-            CONNECT WEB
+            Connect WebTech
           </Link>
 
-          <nav className="hidden md:flex" style={{ gap: '28px', alignItems: 'center' }}>
+          {/* Desktop nav */}
+          <nav
+            className="hidden md:flex"
+            style={{ gap: '36px', alignItems: 'center' }}
+          >
             {navLinks.map(({ label, href }) => (
-              <Link
-                key={href}
-                href={href}
-                style={{
-                  fontFamily: 'var(--font-inter), sans-serif',
-                  fontSize: '14px',
-                  fontWeight: 500,
-                  color: '#1B3A5C',
-                  textDecoration: 'none',
-                }}
-              >
+              <Link key={href} href={href} className="nav-link">
                 {label}
               </Link>
             ))}
           </nav>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          {/* CTA + mobile toggle */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <div className="hidden md:block">
               <Link
                 href="/contact"
                 className="btn-primary"
-                style={{ height: '40px', padding: '0 20px', fontSize: '14px' }}
+                style={{ height: '38px', padding: '0 20px', fontSize: '14px' }}
               >
-                Estimation gratuite
+                Décrire mon projet
               </Link>
             </div>
             <button
@@ -81,16 +83,19 @@ export default function Navbar() {
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
-                color: '#1B3A5C',
+                color: 'var(--ink)',
                 padding: '8px',
+                display: 'flex',
+                alignItems: 'center',
               }}
             >
-              <Menu size={22} />
+              <Menu size={20} />
             </button>
           </div>
         </div>
       </header>
 
+      {/* Mobile overlay */}
       {open && (
         <div
           onClick={() => setOpen(false)}
@@ -98,11 +103,12 @@ export default function Navbar() {
             position: 'fixed',
             inset: 0,
             zIndex: 49,
-            background: 'rgba(0, 0, 0, 0.4)',
+            background: 'oklch(18% 0.015 260 / 0.5)',
           }}
         />
       )}
 
+      {/* Mobile drawer */}
       <div
         style={{
           position: 'fixed',
@@ -110,12 +116,13 @@ export default function Navbar() {
           right: 0,
           bottom: 0,
           width: '280px',
-          background: '#FFFFFF',
+          background: 'var(--surface)',
+          borderLeft: '1px solid var(--line)',
           zIndex: 50,
           display: 'flex',
           flexDirection: 'column',
           transform: open ? 'translateX(0)' : 'translateX(100%)',
-          transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          transition: 'transform 300ms cubic-bezier(0.25, 0, 0, 1)',
         }}
         aria-hidden={!open}
       >
@@ -126,20 +133,19 @@ export default function Navbar() {
             justifyContent: 'space-between',
             padding: '0 24px',
             height: '64px',
-            borderBottom: '1px solid #E5E7EB',
+            borderBottom: '1px solid var(--line)',
             flexShrink: 0,
           }}
         >
           <span
             style={{
-              fontFamily: 'var(--font-inter), sans-serif',
-              fontSize: '16px',
-              fontWeight: 700,
-              color: '#1B3A5C',
-              letterSpacing: '0.06em',
+              fontFamily: 'var(--font-cormorant), Georgia, serif',
+              fontSize: '18px',
+              fontWeight: 400,
+              color: 'var(--ink)',
             }}
           >
-            CONNECT WEB
+            Connect WebTech
           </span>
           <button
             onClick={() => setOpen(false)}
@@ -148,14 +154,16 @@ export default function Navbar() {
               background: 'none',
               border: 'none',
               cursor: 'pointer',
-              color: '#1B3A5C',
+              color: 'var(--ink-muted)',
+              display: 'flex',
+              alignItems: 'center',
             }}
           >
-            <X size={22} />
+            <X size={20} />
           </button>
         </div>
 
-        <nav style={{ flex: 1, overflowY: 'auto' }}>
+        <nav style={{ flex: 1, overflowY: 'auto', paddingTop: '8px' }}>
           {navLinks.map(({ label, href }) => (
             <Link
               key={href}
@@ -163,13 +171,13 @@ export default function Navbar() {
               onClick={() => setOpen(false)}
               style={{
                 display: 'block',
-                padding: '16px 24px',
-                fontFamily: 'var(--font-inter), sans-serif',
+                padding: '14px 24px',
+                fontFamily: 'var(--font-instrument), system-ui, sans-serif',
                 fontSize: '15px',
-                fontWeight: 500,
-                color: '#1B3A5C',
+                fontWeight: 400,
+                color: 'var(--ink)',
                 textDecoration: 'none',
-                borderBottom: '1px solid #F3F4F6',
+                borderBottom: '1px solid var(--line)',
               }}
             >
               {label}
@@ -184,7 +192,7 @@ export default function Navbar() {
             className="btn-primary"
             style={{ width: '100%', justifyContent: 'center' }}
           >
-            Estimation gratuite
+            Décrire mon projet
           </Link>
         </div>
       </div>

@@ -1,88 +1,93 @@
 import Link from 'next/link'
 
-const services = [
-  ['Développement', '/services/developpement'],
-  ['Sites Internet', '/services/sites'],
-  ['Automation & IA', '/services/automation'],
+const navServices = [
+  ['Applications web & mobile', '/services/developpement'],
+  ['E-commerce', '/services/sites'],
+  ['ERP & automatisation', '/services/automation'],
   ['Solutions NFC', '/services/nfc'],
+  ['Logiciels SaaS', '/contact'],
 ] as const
 
-const company = [
-  ['À propos', '/about'],
-  ['Portfolio', '/portfolio'],
-  ['Blog', '/blog'],
+const navCompany = [
+  ['Process', '/#process'],
+  ['Packages', '/offres'],
+  ['Réalisations', '/portfolio'],
   ['Contact', '/contact'],
 ] as const
 
-const labelStyle: React.CSSProperties = {
-  fontFamily: 'var(--font-inter), sans-serif',
-  fontSize: '11px',
-  fontWeight: 600,
-  letterSpacing: '0.1em',
-  textTransform: 'uppercase',
-  color: 'rgba(255,255,255,0.45)',
-  marginBottom: '16px',
-  display: 'block',
-}
-
-const linkStyle: React.CSSProperties = {
-  fontSize: '14px',
-  color: 'rgba(255,255,255,0.72)',
-  textDecoration: 'none',
-  lineHeight: 1.5,
-}
-
-const listStyle: React.CSSProperties = {
-  listStyle: 'none',
-  margin: 0,
-  padding: 0,
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '10px',
-}
-
 export default function Footer() {
   return (
-    <footer style={{ background: '#1B3A5C', color: '#FFFFFF' }}>
-      <div className="container" style={{ paddingBlock: 'clamp(3rem, 6vw, 5rem)' }}>
+    <footer style={{ background: 'var(--ink)', color: 'var(--surface)' }}>
+      <div className="container" style={{ paddingBlock: 'clamp(56px, 8vw, 80px)' }}>
         <div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
-          style={{ gap: '40px' }}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '40px',
+          }}
         >
-          {/* Col 1 — Logo + tagline */}
+          {/* Col 1 — Identity */}
           <div>
             <span
               style={{
-                fontFamily: 'var(--font-inter), sans-serif',
-                fontSize: '16px',
-                fontWeight: 700,
-                letterSpacing: '0.06em',
+                fontFamily: 'var(--font-cormorant), Georgia, serif',
+                fontSize: '18px',
+                fontWeight: 400,
+                color: 'var(--surface)',
                 display: 'block',
                 marginBottom: '12px',
+                letterSpacing: '0.02em',
               }}
             >
-              CONNECT WEB
+              Connect WebTech
             </span>
             <p
               style={{
-                fontSize: '14px',
-                color: 'rgba(255,255,255,0.6)',
+                fontFamily: 'var(--font-dm-mono), monospace',
+                fontSize: '12px',
+                color: 'oklch(92% 0.008 85 / 0.45)',
                 lineHeight: 1.65,
-                margin: 0,
+                margin: '0 0 16px',
                 maxWidth: '200px',
               }}
             >
-              Agence digitale dakaroise — sites, apps & automatisation.
+              Agence technique
+              <br />
+              Dakar, Sénégal
             </p>
+            <a
+              href="mailto:contact@connect-web.tech"
+              style={{
+                fontFamily: 'var(--font-dm-mono), monospace',
+                fontSize: '12px',
+                color: 'var(--accent)',
+                textDecoration: 'none',
+              }}
+            >
+              contact@connect-web.tech
+            </a>
           </div>
 
           {/* Col 2 — Services */}
           <div>
-            <span style={labelStyle}>Services</span>
-            <ul style={listStyle}>
-              {services.map(([label, href]) => (
+            <span
+              style={{
+                fontFamily: 'var(--font-dm-mono), monospace',
+                fontSize: '11px',
+                fontWeight: 400,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase' as const,
+                color: 'oklch(92% 0.008 85 / 0.35)',
+                display: 'block',
+                marginBottom: '16px',
+              }}
+            >
+              Services
+            </span>
+            <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {navServices.map(([label, href]) => (
                 <li key={href}>
-                  <Link href={href} style={linkStyle}>
+                  <Link href={href} className="footer-link">
                     {label}
                   </Link>
                 </li>
@@ -90,50 +95,40 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 3 — Entreprise */}
+          {/* Col 3 — Navigation */}
           <div>
-            <span style={labelStyle}>Entreprise</span>
-            <ul style={listStyle}>
-              {company.map(([label, href]) => (
+            <span
+              style={{
+                fontFamily: 'var(--font-dm-mono), monospace',
+                fontSize: '11px',
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase' as const,
+                color: 'oklch(92% 0.008 85 / 0.35)',
+                display: 'block',
+                marginBottom: '16px',
+              }}
+            >
+              Navigation
+            </span>
+            <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {navCompany.map(([label, href]) => (
                 <li key={href}>
-                  <Link href={href} style={linkStyle}>
+                  <Link href={href} className="footer-link">
                     {label}
                   </Link>
                 </li>
               ))}
-            </ul>
-          </div>
-
-          {/* Col 4 — Contact */}
-          <div>
-            <span style={labelStyle}>Contact</span>
-            <ul style={listStyle}>
-              <li>
-                <a href="tel:+221779006282" style={linkStyle}>
-                  +221 77 900 62 82
-                </a>
-              </li>
-              <li>
-                <a href="mailto:contact@connect-web.tech" style={linkStyle}>
-                  contact@connect-web.tech
-                </a>
-              </li>
-              <li>
-                <span style={{ ...linkStyle, cursor: 'default' }}>
-                  G49 Scat Urbam, Dakar
-                </span>
-              </li>
             </ul>
           </div>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+      <div style={{ borderTop: '1px solid oklch(92% 0.008 85 / 0.08)' }}>
         <div
           className="container"
           style={{
-            paddingBlock: '18px',
+            paddingBlock: '20px',
             display: 'flex',
             flexWrap: 'wrap',
             gap: '8px',
@@ -141,10 +136,25 @@ export default function Footer() {
             alignItems: 'center',
           }}
         >
-          <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.45)', margin: 0 }}>
-            © 2025 Connect Web
+          <p
+            style={{
+              fontFamily: 'var(--font-dm-mono), monospace',
+              fontSize: '11px',
+              color: 'oklch(92% 0.008 85 / 0.30)',
+              margin: 0,
+            }}
+          >
+            © 2025 Connect WebTech · Dakar, Sénégal
           </p>
-          <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.35)', margin: 0, textAlign: 'right' }}>
+          <p
+            style={{
+              fontFamily: 'var(--font-dm-mono), monospace',
+              fontSize: '11px',
+              color: 'oklch(92% 0.008 85 / 0.20)',
+              margin: 0,
+              textAlign: 'right',
+            }}
+          >
             NINEA 011990604 · RCCM SN DKR 2025 A 10391
           </p>
         </div>

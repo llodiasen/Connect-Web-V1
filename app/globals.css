@@ -1,114 +1,268 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Fonts */
-  --font-heading: 'Clash Display', Georgia, serif;
-  --font-body: var(--font-inter);
-
-  /* Brand colors */
-  --color-orange: #E85D04;
-  --color-orange-hover: #C94E03;
-  --color-navy: #1B3A5C;
-  --color-navy-light: #243659;
-  --color-bg: #0D1117;
-  --color-surface: #161B22;
-  --color-surface-alt: #1C2128;
-  --color-border: #30363D;
-  --color-text: #E6EDF3;
-  --color-text-muted: #8B949E;
+  --font-heading: var(--font-cormorant), Georgia, serif;
+  --font-body: var(--font-instrument), system-ui, sans-serif;
+  --font-mono: var(--font-dm-mono), 'Courier New', monospace;
 }
 
+/* ── Color tokens (light mode) ──────────────────────────────────────── */
 :root {
-  --background: #0D1117;
-  --foreground: #E6EDF3;
-  --font-clash: 'Clash Display', Georgia, serif;
+  --surface:        oklch(97% 0.008 85);
+  --surface-2:      oklch(93% 0.010 85);
+  --surface-3:      oklch(89% 0.010 85);
+  --hero-wash:      oklch(94% 0.015 75);
+
+  --ink:            oklch(18% 0.015 260);
+  --ink-muted:      oklch(48% 0.012 260);
+  --ink-subtle:     oklch(65% 0.008 260);
+
+  --accent:         oklch(55% 0.18 145);
+  --accent-hover:   oklch(48% 0.20 145);
+  --accent-glow:    oklch(55% 0.18 145 / 0.20);
+  --accent-subtle:  oklch(55% 0.18 145 / 0.10);
+
+  --line:           oklch(85% 0.010 85);
+  --line-strong:    oklch(75% 0.012 85);
 }
 
-* {
-  box-sizing: border-box;
+[data-theme="dark"] {
+  --surface:        oklch(12% 0.012 260);
+  --surface-2:      oklch(16% 0.014 260);
+  --surface-3:      oklch(20% 0.014 260);
+  --hero-wash:      oklch(14% 0.015 260);
+
+  --ink:            oklch(92% 0.008 85);
+  --ink-muted:      oklch(62% 0.010 85);
+  --ink-subtle:     oklch(45% 0.008 85);
+
+  --accent:         oklch(65% 0.18 145);
+  --accent-hover:   oklch(72% 0.18 145);
+  --accent-glow:    oklch(65% 0.18 145 / 0.20);
+  --accent-subtle:  oklch(65% 0.18 145 / 0.12);
+
+  --line:           oklch(25% 0.012 260);
+  --line-strong:    oklch(35% 0.012 260);
 }
+
+/* ── Base ───────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
+  transition: background-color 200ms ease-out, color 200ms ease-out;
 }
+html.no-transition * { transition: none !important; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-inter), Inter, system-ui, sans-serif;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-instrument), system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2 {
-  font-family: 'Clash Display', Georgia, serif;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-}
-
-h3, h4, h5, h6 {
-  font-family: var(--font-inter), Inter, system-ui, sans-serif;
-  font-weight: 600;
-}
-
-/* Section utilities */
-.section-base {
-  padding-block: clamp(4rem, 8vw, 7rem);
-}
-
+/* ── Layout ─────────────────────────────────────────────────────────── */
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1280px;
   margin-inline: auto;
-  padding-inline: clamp(1.25rem, 5vw, 2rem);
+  padding-inline: clamp(24px, 5vw, 80px);
 }
 
-/* CTA orange button */
+.section {
+  padding-block: clamp(64px, 8vw, 96px);
+}
+
+/* ── Typography tokens ──────────────────────────────────────────────── */
+.label {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+/* ── Buttons ────────────────────────────────────────────────────────── */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #E85D04;
-  color: #FFFFFF;
-  font-family: var(--font-inter), sans-serif;
-  font-weight: 600;
+  background: var(--accent);
+  color: var(--surface);
+  font-family: var(--font-instrument), system-ui, sans-serif;
   font-size: 15px;
-  height: 52px;
-  padding: 0 32px;
+  font-weight: 500;
+  padding: 14px 32px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: transform 180ms cubic-bezier(0.25, 0, 0, 1),
+              box-shadow 180ms cubic-bezier(0.25, 0, 0, 1);
 }
-
 .btn-primary:hover {
-  background: #C94E03;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(232, 93, 4, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--accent-glow);
 }
 
-/* Ghost button */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-instrument), system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 13px 31px;
+  border-radius: 8px;
+  border: 1px solid var(--line-strong);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 180ms ease-out, background 180ms ease-out;
+}
+.btn-secondary:hover {
+  border-color: var(--ink);
+}
+
+/* Legacy alias */
 .btn-ghost {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   background: transparent;
-  color: #E6EDF3;
-  font-family: var(--font-inter), sans-serif;
-  font-weight: 500;
+  color: var(--ink);
+  font-family: var(--font-instrument), system-ui, sans-serif;
   font-size: 15px;
-  height: 52px;
-  padding: 0 32px;
+  font-weight: 500;
+  padding: 13px 31px;
   border-radius: 8px;
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--line-strong);
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: border-color 180ms ease-out, background 180ms ease-out;
+}
+.btn-ghost:hover { border-color: var(--ink); }
+
+/* ── Hero animations ────────────────────────────────────────────────── */
+@keyframes hero-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.btn-ghost:hover {
-  border-color: rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.05);
+.hero-badge  { animation: hero-up 500ms cubic-bezier(0.16, 1, 0.3, 1) 0ms   both; }
+.hero-title  { animation: hero-up 500ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both; }
+.hero-sub    { animation: hero-up 500ms cubic-bezier(0.16, 1, 0.3, 1) 320ms both; }
+.hero-cta    { animation: hero-up 500ms cubic-bezier(0.16, 1, 0.3, 1) 460ms both; }
+.hero-scroll { animation: hero-up 500ms cubic-bezier(0.16, 1, 0.3, 1) 680ms both; }
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
+}
+.scroll-arrow { animation: scroll-bounce 1.6s ease-in-out infinite; }
+
+/* ── Scroll reveal ──────────────────────────────────────────────────── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Marquee ────────────────────────────────────────────────────────── */
+@keyframes marquee-left  { from { transform: translateX(0);    } to { transform: translateX(-50%); } }
+@keyframes marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0);    } }
+
+.marquee-track-1 { animation: marquee-left  40s linear infinite; }
+.marquee-track-2 { animation: marquee-right 44s linear infinite; }
+.marquee-wrap:hover .marquee-track-1,
+.marquee-wrap:hover .marquee-track-2 { animation-play-state: paused; }
+
+/* ── Service card hover ─────────────────────────────────────────────── */
+.service-card {
+  transition: transform 200ms cubic-bezier(0.25, 0, 0, 1),
+              border-color 200ms cubic-bezier(0.25, 0, 0, 1),
+              box-shadow 200ms cubic-bezier(0.25, 0, 0, 1);
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent) !important;
+  box-shadow: 0 12px 32px oklch(0% 0 0 / 6%);
+}
+.service-card:hover .card-arrow {
+  transform: translateX(4px);
+}
+.card-arrow {
+  display: inline-block;
+  transition: transform 200ms cubic-bezier(0.25, 0, 0, 1);
+}
+
+/* ── CTA pulse ──────────────────────────────────────────────────────── */
+@keyframes pulse-accent {
+  0%,  100% { box-shadow: 0 0 0 0    oklch(55% 0.18 145 / 0%);  }
+  50%        { box-shadow: 0 0 0 10px oklch(55% 0.18 145 / 10%); }
+}
+.cta-pulse { animation: pulse-accent 2.4s ease-in-out infinite; }
+
+/* ── Radix accordion ────────────────────────────────────────────────── */
+[data-radix-accordion-content] { overflow: hidden; }
+[data-radix-accordion-content][data-state='open'] {
+  animation: accordion-open 300ms cubic-bezier(0.25, 0, 0, 1);
+}
+[data-radix-accordion-content][data-state='closed'] {
+  animation: accordion-close 300ms cubic-bezier(0.25, 0, 0, 1);
+}
+@keyframes accordion-open  { from { height: 0; } to { height: var(--radix-accordion-content-height); } }
+@keyframes accordion-close { from { height: var(--radix-accordion-content-height); } to { height: 0; } }
+
+/* ── Services grid ──────────────────────────────────────────────────── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.service-wide { grid-column: span 2; }
+
+@media (max-width: 900px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .service-wide  { grid-column: span 1; }
+  .service-nfc   { flex-direction: column !important; }
+}
+
+/* ── Footer links ───────────────────────────────────────────────────── */
+.footer-link {
+  font-family: var(--font-instrument), system-ui, sans-serif;
+  font-size: 14px;
+  color: oklch(92% 0.008 85 / 0.60);
+  text-decoration: none;
+  transition: color 150ms ease-out;
+}
+.footer-link:hover { color: oklch(92% 0.008 85 / 0.90); }
+
+/* ── Nav links hover ────────────────────────────────────────────────── */
+.nav-link {
+  font-family: var(--font-instrument), system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ink-muted);
+  text-decoration: none;
+  transition: color 150ms ease-out;
+}
+.nav-link:hover { color: var(--ink); }
+
+/* ── Reduced motion ─────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
